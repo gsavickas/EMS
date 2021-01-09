@@ -18,6 +18,7 @@ console.log(headerValue);
 // Variable declaration:
 let http = require("http");
 
+// This function produce a body of text that is then served to localhost:8080
 function processRequest(req, res) {
 
 let body = "Hello World this is not quite the first time I have used node but a good refresher";
