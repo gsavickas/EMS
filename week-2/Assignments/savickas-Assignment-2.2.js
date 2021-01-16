@@ -4,7 +4,7 @@
 ; Author: Grayton Savickas
 ; Date:   15 Jan 2021
 ; Modified By: 
-; Description: Simulating classical programming in JavaScript 
+; Description: Tests out using Express
 ;===========================================
 */
 const header = require('../../week-1/Savickas-header')
