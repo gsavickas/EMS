@@ -27,7 +27,7 @@ app.set("view engine", "ejs"); // Tell Express to use the EJS view engine
 app.use(logger("short"));
 app.get("/", function(req, res) {
   res.render("index", {
-    message: "Welcome to the Morgane Logger Jungle!"
+    message: "Welcome to the Morgan Logger Jungle!"
   });
 });
 http.createServer(app).listen(8080, function(){
