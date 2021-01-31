@@ -2,7 +2,7 @@
 ============================================
 ; Title:  Exercise 4.4 - curd operations
 ; Author: Grayton Savickas
-; Date:   29 Jan 2021
+; Date:   31 Jan 2021
 ; Modified By:
 ; Description: Crud Operations
 ;===========================================
@@ -22,18 +22,22 @@ var app = express();
 
 app.use(logging('dev'));
 
+// will initiate a get request
 app.get("/", function(request, response) {
   response.send("API invoked as an HTTP GET request.");
 });
 
+// will initiate a put request
 app.put("/", function(request, response) {
   response.send("API invoked as an HTTP PUT request.");
 });
 
+// will initiate a post request
 app.post("/", function(request, response) {
   response.send("API invoked as an HTTP POST request");
 });
 
+// will initiate a delete request
 app.delete("/", function(request, response) {
   response.send("API invoked as an HTTP DELETE request");
 });
