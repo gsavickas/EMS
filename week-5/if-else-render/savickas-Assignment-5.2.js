@@ -14,3 +14,28 @@ console.log(headerValue);
 
 // start of program
 
+// requires statements
+var express = require('express');
+var http = require('http');
+var path = require('path');
+
+// server logic
+var app = express();
+app.set('views', path.resolve(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// local array
+var f = ['Orange', 'Banana', 'Blueberry', 'Grapefruit'];
+
+// routes
+app.get('/', function(req, res){
+  res.render('index', {
+    fruits: f
+  });
+});
+
+// create server
+http.createServer(app).listen(8080, function() {
+  console.log("Application started on port 8080.");
+});
+
