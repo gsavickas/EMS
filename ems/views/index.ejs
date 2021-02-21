@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<% include header %>
+<%- include header %>
 
 <body>
 <% include navbar %>
 
 <div role="main" class="container" style="width: 30%;">
   <br /><br />
-
-  <% if (fruits.length) { %>
-    <h2>Fruits</h2>
-    <br />
-    <a class="" href="/new">New Fruit</a>
-    <br />
-    <table class="table table-hover">
-      <thead class="bg-secondary">
-      <tr>
-        <th class="text-white">Name</th>
-        <th class="text-white">Functions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% fruits.forEach(function (entry) { %>
-        <tr>
-          <td><%= entry.name %></td>
-          <td style="width: 10%; text-align: center;">
-            <a style="color: #555" href="/view/<%= entry.name %>">
-              <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-      <% }) %>
-    </table>
-  <% } else { %> No entries! <a href="/new">Add one!</a>
-  <% } %>
+<h2>Hello</h2>
 
   <br />
+  <h2>Fruit List</h2>
+
+  <% for (var k = 0; k < fruits.length; k++) { %>
+  <!-- if -->
+  <% if (fruits[k] == "Apple") { %>
+  <div class="alert alert-success" role="alert">
+    <strong><%= fruits[k] %></strong>
+  </div>
+  <% } %>
+  <!-- // end if -->
+  <!-- if -->
+  <% if (fruits[k] == "Blueberry") { %>
+  <div class="alert alert-info" role="alert">
+    <strong><%= fruits[k] %></strong>
+  </div>
+  <% } %>
+  <!-- // end if -->
+  <!-- if -->
+  <% if (fruits[k] == "Orange") { %>
+  <div class="alert alert-warning" role="alert">
+    <strong><%= fruits[k] %></strong>
+  </div>
+  <% } %>
+  <!-- // end if -->
+  <!-- if -->
+  <% if (fruits[k] == "Strawberry") { %>
+  <div class="alert alert-danger" role="alert">
+    <strong><%= fruits[k] %></strong>
+  </div>
+  <% } %>
+  <!-- // end if -->
+  <% } %>
 </div>
 <% include scripts %>
 </body>

@@ -7,10 +7,6 @@
 ; Description: Development of UI elements in EJS
 ;===========================================
 */
-const header = require('../week-1/Savickas-header')
-// Tests the import of header function works
-var headerValue = header.display("Grayton", "Savickas", "Exercise 5.4 - UI Dev with EJS")
-console.log(headerValue);
 
 // start of program
 
@@ -21,5 +17,18 @@ var logging = require('morgan');
 
 // server logic with EJS
 var app = express();
-app.set('views', path.resolve(__dirname, 'views'));
-app.set('view engine', 'ejs');
+
+app.set("views", path.resolve(__dirname, "views"));
+app.set("view engine", "ejs");
+
+const fruits = ["Apple", "Blueberry", "Orange", "Strawberry"];
+
+app.get('/', function(req, res){
+  res.render('index',{
+    fruits: fruits
+  });
+});
+
+http.createServer(app).listen(3000, function(){
+console.log("Server has started on port 3000");
+});
