@@ -1,19 +1,19 @@
 /*
 ============================================
-; Title:  Exercise 7.2 - TDD
+; Title:  Exercise 7.3 Chai
 ; Author: Grayton Savickas
 ; Date:   21 Feb 2021
 ; Modified By:
-; Description: TDD
+; Description: Chai
 ;===========================================
 */
-const header = require('../../../week-1/Savickas-header')
+const header = require('../../week-1/Savickas-header')
 // Tests the import of header function works
-var headerValue = header.display("Grayton", "Savickas", "Exercise 7.2 - TDD")
+var headerValue = header.display("Grayton", "Savickas", "Exercise 7.3 Chai")
 console.log(headerValue);
 
-function getFruit(str){
+function fruits(str) {
   return str.split(",");
 }
 
-module.exports = getFruit;
+module.exports = fruits;
