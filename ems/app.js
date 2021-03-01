@@ -15,13 +15,13 @@ const path = require('path');
 const logger = require('morgan');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const csrf = require('csurf');
+// const cookieParser = require('cookie-parser');
+// const csrf = require('csurf');
 const mongoose = require('mongoose');
-const Fruit = require('./models/fruit');
+const Fruit = require('./models/employee');
 
 // database connection string to MongoDB Atlas
-// const conn = 'mongodb+srv://admin:admin@cluster0-lujih.mongodb.net/fms?retryWrites=true&w=majority';
+const conn = 'mongodb+srv://dbUser-gss:wANRMmT7OFBXFO2g@mando21.06wom.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 /**
  * Database connection
@@ -41,7 +41,7 @@ mongoose.connect(conn, {
 /**
  * Sets up CSRF protection.
  */
-let csrfProtection = csrf({ cookie: true });
+// let csrfProtection = csrf({ cookie: true });
 
 /**
  * Initializes the express application.
@@ -59,21 +59,24 @@ app.use(
     extended: true
   })
 );
+
 // Cookie parser
-app.use(cookieParser());
+// app.use(cookieParser());
+
 // Helmet
 app.use(helmet.xssFilter());
+
 // CSRF protection
-app.use(csrfProtection);
+// app.use(csrfProtection);
 /**
  * Intercepts all incoming requests and adds a CSRF token to the response.
  */
-app.use(function(req, res, next) {
-  var token = req.csrfToken();
-  res.cookie('XSRF-TOKEN', token);
-  res.locals.csrfToken = token;
-  next();
-});
+// app.use(function(req, res, next) {
+//   var token = req.csrfToken();
+//   res.cookie('XSRF-TOKEN', token);
+//   res.locals.csrfToken = token;
+//   next();
+// });
 
 /**
  * Sets up the view engine, view's directory path, and the server port.
@@ -97,7 +100,7 @@ app.get('/', function(req, res) {
     } else {
       console.log(fruits);
       res.render('index', {
-        title: 'FMS | Home',
+        title: 'EMS | Home',
         fruits: fruits
       })
     }
@@ -113,7 +116,7 @@ app.get('/', function(req, res) {
  */
 app.get('/new', function(req, res) {
   res.render('new', {
-    title: 'FMS | New'
+    title: 'EMS | New'
   });
 });
 
