@@ -15,8 +15,8 @@ const path = require('path');
 const logger = require('morgan');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
-// const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 const mongoose = require('mongoose');
 const Fruit = require('./models/employee');
 
@@ -41,7 +41,7 @@ mongoose.connect(conn, {
 /**
  * Sets up CSRF protection.
  */
-// let csrfProtection = csrf({ cookie: true });
+const csrfProtection = csrf({ cookie: true });
 
 /**
  * Initializes the express application.
@@ -61,22 +61,22 @@ app.use(
 );
 
 // Cookie parser
-// app.use(cookieParser());
+app.use(cookieParser());
 
 // Helmet
 app.use(helmet.xssFilter());
 
 // CSRF protection
-// app.use(csrfProtection);
+app.use(csrfProtection);
 /**
  * Intercepts all incoming requests and adds a CSRF token to the response.
  */
-// app.use(function(req, res, next) {
-//   var token = req.csrfToken();
-//   res.cookie('XSRF-TOKEN', token);
-//   res.locals.csrfToken = token;
-//   next();
-// });
+app.use(function(req, res, next) {
+  const token = req.csrfToken();
+  res.cookie('XSRF-TOKEN', token);
+  res.locals.csrfToken = token;
+  next();
+});
 
 /**
  * Sets up the view engine, view's directory path, and the server port.
@@ -174,7 +174,7 @@ app.get('/view/:queryName', function(req, res) {
 
       if (fruits.length > 0) {
         res.render('view', {
-          title: 'FMS | View',
+          title: 'EMS | View',
           fruit: fruits
         })
       } else {
