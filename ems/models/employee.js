@@ -15,4 +15,4 @@ let EmployeeSchema = new Schema({
   lastName: {type: String, required: true}
 })
 
-module.exports = mongoose.model('employee', EmployeeSchema);
+module.exports = mongoose.model('Employee', EmployeeSchema);

@@ -18,7 +18,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 const mongoose = require('mongoose');
-const Fruit = require('./models/employee');
+const Employee = require('./models/employee');
+
 
 // database connection string to MongoDB Atlas
 const conn = 'mongodb+srv://dbUser-gss:wANRMmT7OFBXFO2g@mando21.06wom.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -47,7 +48,6 @@ const csrfProtection = csrf({ cookie: true });
  * Initializes the express application.
  */
 let app = express();
-
 /**
  * Configures the dependency libraries.
  */
@@ -89,19 +89,19 @@ app.set('port', process.env.PORT || 3000);
  * Description: Redirects users to the 'index' page.
  * Type: HttpGet
  * Request: n/a
- * Response: index.ejs, Fruit[]
+ * Response: index.ejs, employee[]
  * URL: localhost:8080
  */
 app.get('/', function(req, res) {
-  Fruit.find({}, function(err, fruits) {
+  Employee.find({}, function(err, employees) {
     if (err) {
       console.log(err);
       throw err;
     } else {
-      console.log(fruits);
+      console.log(employees);
       res.render('index', {
         title: 'EMS | Home',
-        fruits: fruits
+        employees: employees
       })
     }
   });
@@ -128,28 +128,35 @@ app.get('/new', function(req, res) {
  * URL: localhost:8080/process
  */
 app.post('/process', function(req, res) {
-  // console.log(request.body.txtName);
-  if (!req.body.txtName) {
-    res.status(400).send('Entries must have a name');
+
+  if (!req.body.fName) {
+    res.status(400).send('Entries must have a first name');
+    return;
+  }
+  if (!req.body.lName) {
+    res.status(400).send('Entries must have a last name');
     return;
   }
 
   // get the request's form data
-  const fruitName = req.body.txtName;
-  console.log(fruitName);
+  const firstName = req.body.fName;
+  console.log(firstName);
+  const lastName = req.body.lName;
+  console.log(lastName);
 
-  // create a fruit model
-  let fruit = new Fruit({
-    name: fruitName
+  // create a Employee model
+  let employee = new Employee({
+    firstName : firstName,
+    lastName : lastName
   });
 
   // save
-  fruit.save(function(err) {
+  employee.save(function(err) {
     if (err) {
       console.log(err);
       throw err;
     } else {
-      console.log(fruitName + ' saved successfully!');
+      console.log(firstName + " " + lastName + ' saved successfully!');
       res.redirect('/');
     }
   });
@@ -159,23 +166,23 @@ app.post('/process', function(req, res) {
  * Description: Redirects users to the 'home' page'
  * Type: HttpGet
  * Request: queryName
- * Response: view.ejs, Fruit[] | index.ejs
+ * Response: view.ejs, employee[] | index.ejs
  * URL: localhost:8080/view/:queryName
  */
 app.get('/view/:queryName', function(req, res) {
   const queryName = req.params['queryName'];
 
-  Fruit.find({'name': queryName}, function(err, fruits) {
+  Employee.find({'fName': queryName}, function(err, employees) {
     if (err) {
       console.log(err);
       throw err;
     } else {
-      console.log(fruits);
+      console.log(employees);
 
-      if (fruits.length > 0) {
+      if (employees.length > 0) {
         res.render('view', {
           title: 'EMS | View',
-          fruit: fruits
+          employee: employees
         })
       } else {
         res.redirect('/');

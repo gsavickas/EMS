@@ -3,13 +3,18 @@
   "author": "Grayton Savickas",
   "private": true,
   "dependencies": {
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "csurf": "^1.11.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "helmet": "^4.4.1",
     "mongoose": "^5.11.18",
     "morgan": "^1.10.0"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }
