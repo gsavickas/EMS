@@ -169,27 +169,27 @@ app.post('/process', function(req, res) {
  * Response: view.ejs, employee[] | index.ejs
  * URL: localhost:3000/view/:queryName
  */
-app.get('/view/:queryName', function(req, res) {
-  const queryName = req.params['queryName'];
+// app.get('/view/:queryName', function(req, res) {
+//   const queryName = req.params['queryName'];
 
-  Employee.find({'fName': queryName}, function(err, employees) {
-    if (err) {
-      console.log(err);
-      throw err;
-    } else {
-      console.log(employees);
+//   Employee.find({'fName': queryName}, function(err, employees) {
+//     if (err) {
+//       console.log(err);
+//       throw err;
+//     } else {
+//       console.log(employees);
 
-      if (employees.length > 0) {
-        res.render('view', {
-          title: 'EMS | View',
-          employee: employees
-        })
-      } else {
-        res.redirect('/');
-      }
-    }
-  })
-});
+//       if (employees.length > 0) {
+//         res.render('view', {
+//           title: 'EMS | View',
+//           employee: employees
+//         })
+//       } else {
+//         res.redirect('/');
+//       }
+//     }
+//   })
+// });
 
 /**
  * Creates a new Node.js server and listens on local port 3000.
