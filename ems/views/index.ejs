@@ -9,28 +9,26 @@
   <br /><br />
 
   <% if (employees.length) { %>
-    <h2>Employees</h2>
+    <h2>Imperial Troops</h2>
     <br />
     <a class="" href="/new">New Trooper</a>
     <br />
     <table class="table table-hover">
       <thead class="bg-secondary">
-      <tr>
-        <th class="text-white">Name</th>
-        <th class="text-white">Functions</th>
-      </tr>
+        <tr>
+          <th class="text-white">First Name</th>
+          <th class="text-white">Last Name</th>
+        </tr>
       </thead>
       <tbody>
       <% employees.forEach(function (entry) { %>
         <tr>
-          <td><%= entry.firstName %></td>
-          <td style="width: 10%; text-align: center;">
+          <td style="width: 10%; text-align: left;"><%= entry.firstName %>
             <a style="color: #555" href="/view/<%= entry.firstName %>">
               <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
             </a>
           </td>
-          <td><%= entry.lastName %></td>
-          <td style="width: 10%; text-align: center;">
+          <td style="width: 10%; text-align: left;"><%= entry.lastName %>
             <a style="color: #555" href="/view/<%= entry.lastName %>">
               <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
             </a>
@@ -41,7 +39,22 @@
     </table>
   <% } else { %> No entries! <a href="/new">Add one!</a>
   <% } %>
-
+  <!-- <div role="main" class="container" style="width: 50%;">
+    <br/><br/>
+    <h2>Trooper Record</h2>
+    <div>
+        <div class="form-group">
+            <label for="fName">First Name:</label>
+            <input type="text" class="form-control" id="fName" name="fName" />
+            <label for="lName">Last Name: Name:</label>
+            <input type="text" class="form-control" id="lName" name="lName" />
+        </div>
+    </div>
+    <br />
+    <a class="" href="/list">Search for Trooper</a>
+    <br />
+    <br /><br />
+</div> -->
   <br />
 </div>
 <%- include('scripts') %>

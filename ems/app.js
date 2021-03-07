@@ -90,7 +90,7 @@ app.set('port', process.env.PORT || 3000);
  * Type: HttpGet
  * Request: n/a
  * Response: index.ejs, employee[]
- * URL: localhost:8080
+ * URL: localhost:3000
  */
 app.get('/', function(req, res) {
   Employee.find({}, function(err, employees) {
@@ -112,7 +112,7 @@ app.get('/', function(req, res) {
  * Type: HttpGet
  * Request: n/a
  * Response: new.ejs
- * URL: localhost:8080/new
+ * URL: localhost:3000/new
  */
 app.get('/new', function(req, res) {
   res.render('new', {
@@ -125,7 +125,7 @@ app.get('/new', function(req, res) {
  * Type: HttpPost
  * Request: textName
  * Response: index.ejs
- * URL: localhost:8080/process
+ * URL: localhost:3000/process
  */
 app.post('/process', function(req, res) {
 
@@ -167,7 +167,7 @@ app.post('/process', function(req, res) {
  * Type: HttpGet
  * Request: queryName
  * Response: view.ejs, employee[] | index.ejs
- * URL: localhost:8080/view/:queryName
+ * URL: localhost:3000/view/:queryName
  */
 app.get('/view/:queryName', function(req, res) {
   const queryName = req.params['queryName'];
@@ -192,7 +192,7 @@ app.get('/view/:queryName', function(req, res) {
 });
 
 /**
- * Creates a new Node.js server and listens on local port 8080.
+ * Creates a new Node.js server and listens on local port 3000.
  */
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Application started on port ' + app.get('port'));
